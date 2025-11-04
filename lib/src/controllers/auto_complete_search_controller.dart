@@ -4,21 +4,21 @@ import 'package:ultra_map_place_picker/src/widgets/auto_complete_search.dart';
 class AutoCompleteSearchController extends ChangeNotifier {
   AutoCompleteSearchState? _autoCompleteSearch;
 
-  attach(final AutoCompleteSearchState searchWidget) {
+  void attach(final AutoCompleteSearchState searchWidget) {
     _autoCompleteSearch = searchWidget;
   }
 
   /// Just clears text.
-  clear() {
+  void clear() {
     _autoCompleteSearch?.clearText();
   }
 
   /// Clear and remove focus (Dismiss keyboard)
-  reset() {
+  void reset() {
     _autoCompleteSearch?.resetSearchBar();
   }
 
-  clearOverlay() {
+  void clearOverlay() {
     _autoCompleteSearch?.clearOverlay();
   }
 }

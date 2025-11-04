@@ -414,7 +414,7 @@ class PlacePickerState extends State<UltraMapPlacePicker> {
         ));
   }
 
-  _pickPrediction(final Prediction prediction) async {
+  Future<void> _pickPrediction(final Prediction prediction) async {
     provider!.placeSearchingState = SearchingState.searching;
 
     final PlacesDetailsResponse response =

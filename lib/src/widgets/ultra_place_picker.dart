@@ -110,7 +110,7 @@ class UltraPlacePicker extends StatelessWidget {
   final Set<UltraPolylineModel> polylines;
   final Set<UltraMarkerModel> markers;
 
-  _searchByCameraLocation(final PlaceProvider provider) async {
+  Future<void> _searchByCameraLocation(final PlaceProvider provider) async {
     // We don't want to search location again if camera location is changed by zooming in/out.
     if (forceSearchOnZoomChanged == false &&
         provider.prevCameraPosition != null &&

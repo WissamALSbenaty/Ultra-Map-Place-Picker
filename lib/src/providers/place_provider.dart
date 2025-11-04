@@ -98,13 +98,13 @@ class PlaceProvider extends ChangeNotifier {
 
   UltraLocationModel? _previousCameraPosition;
   UltraLocationModel? get prevCameraPosition => _previousCameraPosition;
-  setPrevCameraPosition(final UltraLocationModel? prePosition) {
+  void setPrevCameraPosition(final UltraLocationModel? prePosition) {
     _previousCameraPosition = prePosition;
   }
 
   UltraLocationModel? _currentCameraPosition;
   UltraLocationModel? get cameraPosition => _currentCameraPosition;
-  setCameraPosition(final UltraLocationModel? newPosition) {
+  void setCameraPosition(final UltraLocationModel? newPosition) {
     _currentCameraPosition = newPosition;
   }
 
@@ -150,25 +150,26 @@ class PlaceProvider extends ChangeNotifier {
 
   late UltraMapType _mapType;
   UltraMapType get mapType => _mapType;
-  setUltraMapType(final UltraMapType mapType, {final bool notify = false}) {
+  void setUltraMapType(final UltraMapType mapType,
+      {final bool notify = false}) {
     _mapType = mapType;
     if (notify) {
       notifyListeners();
     }
   }
 
-  switchUltraMapType() {
+  void switchUltraMapType() {
     _mapType = mapTypes[(mapTypes.indexOf(_mapType) + 1) % mapTypes.length];
     notifyListeners();
   }
 
-  animateCamera(final double latitude, final double longitude,
+  Future<void> animateCamera(final double latitude, final double longitude,
       final double zoomLevel) async {
     await mapController.animateCamera(
         target: UltraLocationModel(latitude, longitude), zoomLevel: zoomLevel);
   }
 
-  moveToCurrentPosition() async {
+  Future<void> moveToCurrentPosition() async {
     if (currentPosition == null) {
       return;
     }

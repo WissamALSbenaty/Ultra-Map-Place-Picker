@@ -1,3 +1,6 @@
+## 1.0.0
+Chore: update dependencies
+
 ## 0.7.0
 Chore: update dependencies 
 

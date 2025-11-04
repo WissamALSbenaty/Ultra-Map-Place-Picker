@@ -141,7 +141,7 @@ class AutoCompleteSearchState extends State<AutoCompleteSearch> {
         : Container();
   }
 
-  _onSearchInputChange() {
+  void _onSearchInputChange() {
     if (!mounted) {
       return;
     }
@@ -176,14 +176,14 @@ class AutoCompleteSearchState extends State<AutoCompleteSearch> {
     });
   }
 
-  _onFocusChanged() {
+  void _onFocusChanged() {
     final PlaceProvider provider = PlaceProvider.of(context, listen: false);
     provider.isSearchBarFocused = focus.hasFocus;
     provider.debounceTimer?.cancel();
     provider.placeSearchingState = SearchingState.idle;
   }
 
-  _searchPlace(final String searchTerm) {
+  void _searchPlace(final String searchTerm) {
     provider.prevSearchTerm = searchTerm;
 
     clearOverlay();
@@ -197,14 +197,14 @@ class AutoCompleteSearchState extends State<AutoCompleteSearch> {
     _performAutoCompleteSearch(searchTerm);
   }
 
-  clearOverlay() {
+  void clearOverlay() {
     if (overlayEntry != null) {
       overlayEntry!.remove();
       overlayEntry = null;
     }
   }
 
-  _displayOverlay(final Widget overlayChild) {
+  void _displayOverlay(final Widget overlayChild) {
     clearOverlay();
 
     final RenderBox? appBarRenderBox =
@@ -269,7 +269,7 @@ class AutoCompleteSearchState extends State<AutoCompleteSearch> {
     );
   }
 
-  _performAutoCompleteSearch(final String searchTerm) async {
+  Future<void> _performAutoCompleteSearch(final String searchTerm) async {
     final PlaceProvider provider = PlaceProvider.of(context, listen: false);
 
     if (searchTerm.isNotEmpty) {
@@ -303,12 +303,12 @@ class AutoCompleteSearchState extends State<AutoCompleteSearch> {
     }
   }
 
-  clearText() {
+  void clearText() {
     provider.searchTerm = '';
     controller.clear();
   }
 
-  resetSearchBar() {
+  void resetSearchBar() {
     clearText();
     focus.unfocus();
   }
